@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html >
+<html lang="en" class="h-100">
+	<meta charset="UTF-8">
+	<title>Spam Detection System</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+	<style>
+		body {
+		    background: linear-gradient(to right, #b92b27 0%, #1565C0 100%);
+		}
+	</style>
+</head>
+
+<body class="h-100">
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6">
+		    <form class="takeInpForm" action="{{ url_for('predict')}}" method="POST">
+		    	<h1>Spam Detector for Email📧</h1>
+		    	<br>
+				<div class="form-group shadow-textarea">
+					<textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" name="message" rows="3" cols="50" required="required" placeholder="Paste email here..."></textarea>
+				</div>
+				<br>
+		        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+				<div class="results">
+
+					{% if prediction == 1%}
+						<h2 style="color:red;">Looking Spam⚠️, Be safe</h2>
+					{% elif prediction == 0%}
+						<h2 style="color:green;"><b>Not a Spam💚</b></h2>
+					{% endif %}
+
+				</div>
+		    </form>
+		</div>
+	</div>
+</div>
